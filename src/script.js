@@ -1,8 +1,9 @@
-var money = 220;
-var income = 100;
-var addExpenses = 330;
-var deposit = 650;
-var mission = 930;
-var period = 130;
+let money = 100, 
+income = 110, 
+addExpenses = 320, 
+deposit = 140, 
+mission = 270, 
+period = 155;
+console.log(deposit);
 alert("Привет!");
 console.log("Еще раз привет!!!");
