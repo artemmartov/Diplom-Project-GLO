@@ -1,9 +1,22 @@
-let money = 100, 
-income = 110, 
-addExpenses = 320, 
-deposit = 140, 
-mission = 270, 
-period = 155;
-console.log(deposit);
-alert("Привет!");
-console.log("Еще раз привет!!!");
+let money = 120000, 
+income = 'фриланс 20000', 
+addExpenses = 'Проезд, аренда, покупки', 
+deposit = true, 
+mission = 500000, 
+period = 6;
+
+console.log(typeof money);
+console.log(typeof income);
+console.log(typeof deposit);
+
+console.log(income.length);
+
+console.log('Период ', period, 'месяцев \n Цель заработать ', mission, 'рублей');
+
+addExpenses.toLowerCase();
+console.log(addExpenses.split(', '));
+
+let budgetDay = (money/30);
+
+console.log(budgetDay);
+console.log(money % 30);
