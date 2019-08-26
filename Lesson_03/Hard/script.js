@@ -23,5 +23,5 @@ let arr = {
 console.log(arr[lang]);
 
 
-let namePerson = 'Петя';
+let namePerson = 'Артем';
 let result = namePerson === 'Артем' ? console.log('Директор') : (namePerson === 'Максим' ? console.log('Преподаватель') : console.log('Студент')); 
