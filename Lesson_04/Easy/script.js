@@ -53,19 +53,21 @@ let accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(costOfExpense
 
 
 
-
-
-    
 let getTargetMonth = function(a, b){
     return a / b;
 }
+getTargetMonth(mission, accumulatedMonth);
 console.log(Math.floor(getTargetMonth(mission, accumulatedMonth)));
+
 
 let getPeriodMonth = function(a, b){
     return a * b;
 }
+getPeriodMonth(getTargetMonth(mission, accumulatedMonth), accumulatedMonth);
 
-console.log(getPeriodMonth(Math.floor(getTargetMonth(mission, accumulatedMonth)), accumulatedMonth));
+
+console.log(getPeriodMonth(getTargetMonth(mission, accumulatedMonth), accumulatedMonth));
+
 
 let showTypeOf = function(data) {
     console.log(typeof(data));
