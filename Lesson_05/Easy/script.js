@@ -35,15 +35,15 @@ return sum;
 
 let sumOfExpenses = function(){
     let oblExpenses1 = prompt('Введите обязательную статью расходов', 'кварплата');
-    let costExpenses1 = +prompt('Во сколько это обойдется?', 2500);
+    let costExpenses1 = prompt('Во сколько это обойдется?', 2500);
     while (isNaN(costExpenses1) || costExpenses1 === '' || costExpenses1 === null){
-        costExpenses1 = +prompt('Во сколько это обойдется?', 2500);
+        costExpenses1 = prompt('Во сколько это обойдется?', 2500);
+        console.log(typeof(costExpenses1));
     }
-return costExpenses1;
+return +costExpenses1;
 };
 
 
-console.log(getExpensesMonth());
 
 
 
