@@ -27,7 +27,7 @@ start();
 let getExpensesMonth = function(){
     let sum = 0;
     
-    for (let i = 0; i < 1; i++){
+    for (let i = 0; i < 2; i++){
         sum += sumOfExpenses();   
     }
 return sum;  
