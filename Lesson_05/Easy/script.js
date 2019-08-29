@@ -116,3 +116,5 @@ let showTypeOf = function(data) {
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
+
+console.log(getExpensesMonth());
