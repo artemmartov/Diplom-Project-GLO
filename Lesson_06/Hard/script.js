@@ -6,3 +6,5 @@ let arr = ['Понедельник', 'Вторник', 'Среда', 'Четве
 for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
 }
+
+document.write(arr);

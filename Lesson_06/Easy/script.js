@@ -49,18 +49,20 @@ let appData = {
     },
 
     getTargetMonth: function(a, b){
-        let target = a / b;
+        let targetMonth = appData.getTargetMonth(appData.mission, appData.budgetMonth);
+        console.log(Math.floor(targetMonth));
         if (target > 0){
             console.log('Цель будет достигнута');
         } else {
             console.log('Цель не будет достигнута');
         }
-    return target;
+   
+
     },
 
     getStatusIncome: function() {
         if (appData.budgetDay >= 800){
-            console.log('высокий уровень дохода');
+            console.log('Высокий уровень дохода');
         } else if (300 <= appData.budgetDay < 800){
             console.log('Средний уровень дохода');
         } else if (appData.budgetDay > 300){
@@ -77,7 +79,7 @@ appData.getExpensesMonth();
 console.log(appData.expenses);
 console.log('Расходы за месяц: ', appData.expensesMonth);
 appData.getBudget();
-
+appData.getStatusIncome();
 
 
 for (let key in appData){
@@ -85,21 +87,3 @@ for (let key in appData){
 }
 
 
-
-appData.getStatusIncome();
-
-let targetMonth = appData.getTargetMonth(appData.mission, appData.budgetMonth);
-console.log(Math.floor(targetMonth));
-
-
-let getPeriodMonth = function(a, b){
-    return a * b;
-};
-getPeriodMonth(targetMonth, appData.getBudget(money, appData.getExpensesMonth()));
-//console.log(getPeriodMonth(targetMonth, appData.getBudget(money, appData.getExpensesMonth())));
-
-//console.log(appData.getBudget(5, 2));
-
-
-
-console.log(appData);
