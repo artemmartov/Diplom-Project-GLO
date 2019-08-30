@@ -15,7 +15,7 @@ for (let i=2;  i<=100; i++) {
         count += 1;
       }
       if (count == 1) 
-      console.log(i);
+      console.log(i, ' - Делители этого числа: 1 и', i);
     }
      
     
