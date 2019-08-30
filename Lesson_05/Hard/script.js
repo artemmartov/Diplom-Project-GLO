@@ -6,3 +6,16 @@ arr.forEach((item) => {
         console.log(item);
     }
 });
+
+
+for (let i=2;  i<=100; i++) {
+  let count = 0;
+  for (let j=2; j<=i; j++) {
+        if (i%j) {continue;}
+        count += 1;
+      }
+      if (count == 1) 
+      console.log(i);
+    }
+     
+    
