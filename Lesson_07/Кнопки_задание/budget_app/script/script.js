@@ -1,30 +1,30 @@
 'use strict';
 
 
-let startButton = document.querySelector("#start");
+    let startButton = document.getElementById('start'),
 
-let allButton = document.querySelectorAll("button"),
-    plusFirstButton = allButton[0],
-    plusSecondButton = allButton[1];
+    plusButtonFirst = document.getElementsByTagName('button')[0],
 
-let checkbox = document.querySelector("#deposit-check"),
+    plusButtonSecond = document.getElementsByTagName('button')[1],
+
+    checkbox = document.querySelector("#deposit-check"),
 
     placeForLetter = document.querySelectorAll('.additional_income-item'),
 
-    budgetMonth = document.querySelector('.budget_month-value'),
+    budgetMonth = document.getElementsByClassName('result-total budget_month-value'),
 
-    budgetDay = document.querySelector('.budget_day-value'),
-    
-    expensesMonth = document.querySelector('.expenses_month-value'),
+    budgetDay = document.getElementsByClassName('budget_day-value'),
 
-    additionalIncome = document.querySelector('.result-additional_income'),
+    expensesMonth = document.getElementsByClassName('expenses_month-value'),
 
-    additionalExpenses = document.querySelector('.result-additional_expenses'),
+    additionalIncome = document.getElementsByClassName('result-total additional_income-value'),
 
-    resultIncome = document.querySelector('.result-income_period'),
+    additionalExpenses = document.getElementsByClassName('result-total additional_expenses-value'),
 
-    targetMonth = document.querySelector('.result-target_month'),
+    resultIncome = document.getElementsByClassName('result-total income_period-value'),
 
+    targetMonth = document.getElementsByClassName('result-total target_month-value'),
+        
     salary = document.querySelector('.salary-amount'),
 
     incomeAmount = document.querySelector('.income-amount'),
