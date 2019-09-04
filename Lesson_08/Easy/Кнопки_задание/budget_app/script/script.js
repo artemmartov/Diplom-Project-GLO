@@ -24,7 +24,7 @@
     IncomePeriodValue = document.querySelector('.income_period-value'),
 
     targetMonthValue = document.querySelector('.target_month-value'),
-        
+
     salaryAmount = document.querySelector('.salary-amount'),
 
     incomeTitle = document.querySelector('.income-title'),
@@ -49,7 +49,7 @@
 
     calc = document.querySelector('.calc');
 
-    
+
 let appData = { 
     income: {},
     incomeMonth: 0,
@@ -59,7 +59,6 @@ let appData = {
     deposit: false,
     percentDeposit: 0,
     moneyDeposit: 0,
-    mission: 500000,
     budget: 0,
     budgetDay: 0,
     budgetMonth: 0,
@@ -67,15 +66,15 @@ let appData = {
     start: function(){
         if (salaryAmount.value.length < 1){
             start.removeAttribute('disabled');
-            
+
             return;
         }
-        appData.Budget = +salaryAmount.value;
-        console.log(salaryAmount);
+        appData.budget = +salaryAmount.value;
+        console.log(salaryAmount.value);
 
         appData.getExpenses();
-        appData.getIncome();
         appData.getExpensesMonth();
+        appData.getIncome();
         appData.getAddExpenses();
         appData.getAddIncome();
         appData.getBudget();
@@ -83,10 +82,12 @@ let appData = {
         appData.showResult();
         start.style.display = 'none';
         cancel.style.display ='block';
-        
+
 
         calc.querySelectorAll('input').forEach(function(item) {
+            if (item !== periodSelect){
             item.disabled = true;
+            }
         });
     },
 
@@ -98,9 +99,10 @@ let appData = {
         additionalIncomeValue.value = appData.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
         IncomePeriodValue.value = appData.calcPeriod();
+        periodSelect.addEventListener('change', function(){
+            IncomePeriodValue.value = appData.calcPeriod();
+        })
     },
-
-
     addExpensesBlock: function(){
         let cloneExpensesItems = expensesItems[0].cloneNode(true);
         expensesItems[0].parentNode.insertBefore(cloneExpensesItems, expensesPlus);
@@ -109,7 +111,7 @@ let appData = {
         if (expensesItems.length === 3){
             expensesPlus.style.display = 'none';
         }
-        
+
     },
     addIncomeBlock: function(){
         let cloneIncomeItems = incomeItems[0].cloneNode(true);
@@ -126,13 +128,12 @@ let appData = {
             let itemIncome = item.querySelector('.income-title').value;
             let cashIncome = item.querySelector('.income-amount').value;
         if(itemIncome !== '' && cashIncome !== ''){
-            appData.income[itemIncome] = cashIncome;
+            appData.income[itemIncome] = +cashIncome;
         }
-        for (let key in appData.income){
-            appData.incomeMonth += +appData.income[key];
-        }
-            
         });
+        for (let key in appData.income){
+            appData.incomeMonth += appData.income[key];
+        }
     },
 
     getAddExpenses: function(){
@@ -160,7 +161,7 @@ let appData = {
             let itemExpenses = item.querySelector('.expenses-title').value;
             let cashExpenses = item.querySelector('.expenses-amount').value;
         if(itemExpenses !== '' && cashExpenses !== ''){
-            appData.expenses[itemExpenses] = cashExpenses;
+            appData.expenses[itemExpenses] = +cashExpenses;
         }
         });
 
@@ -208,15 +209,10 @@ let appData = {
         return appData.budgetMonth * periodSelect.value;
     },
 
-    periodSelect: function(event){
+    periodSelect: function(){
         selectValue.innerHTML = periodSelect.value;
-    },
-    doubleButton: function(){
-        if (start){
-            
 
-        }
-    }
+    },
 };
 appData.getTargetMonth();
 
@@ -225,7 +221,7 @@ cancel.addEventListener('click', appData.cancel);
 start.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('change',appData.periodSelect);
+periodSelect.addEventListener('input', appData.periodSelect);
 
 
 
@@ -245,7 +241,7 @@ appData.getStatusIncome();
 // console.log(str);
 
 // asking: function(){
-        
+
 //     appData.deposit = confirm('Есть ли у вас депозит в банке?');
 // for (let i = 0; i < 2; i++){
 //     let oblExpenses1 = prompt('Введите обязательную статью расходов');
