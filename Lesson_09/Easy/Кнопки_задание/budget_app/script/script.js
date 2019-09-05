@@ -82,7 +82,7 @@ let appData = {
         appData.showResult();
         start.style.display = 'none';
         cancel.style.display ='block';
-        appData.reset();
+        
         
         
         
@@ -226,17 +226,20 @@ let appData = {
     },
 
     reset: function(){
-        budgetMonthValue.value.textContent = null;
-        budgetDayValue.value.textContent = null;
-        expensesMonthValue.value.textContent = null;
-        additionalIncomeValue.value.textContent = null;
-        additionalExpensesValue.value.textContent = null;
-        IncomePeriodValue.value.textContent = null;
-        targetMonthValue.value.textContent = null;
+        budgetMonthValue.value= '';
+        budgetDayValue.value = '';
+        expensesMonthValue.value = '';
+        additionalIncomeValue.value = '';
+        additionalExpensesValue.value = '';
+        IncomePeriodValue.value = '';
+        targetMonthValue.value = '';
+        calc.querySelectorAll('input').forEach(function(item) {
+            item.value = '';
+            item.disabled = false;
+        });
         cancel.style.display = 'none';
-        
-        
-
+        window.location.reload();
+        start.style.display = 'inline';
     }
     
 };
