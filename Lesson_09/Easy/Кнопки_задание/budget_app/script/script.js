@@ -69,17 +69,17 @@ let appData = {
 
             return;
         }
-        appData.budget = +salaryAmount.value;
+        this.budget = +salaryAmount.value;
         console.log(salaryAmount.value);
         
-        appData.getExpenses();
-        appData.getExpensesMonth();
-        appData.getIncome();
-        appData.getAddExpenses();
-        appData.getAddIncome();
-        appData.getBudget();
-        appData.periodSelect();
-        appData.showResult();
+        this.getExpenses();
+        this.getExpensesMonth();
+        this.getIncome();
+        this.getAddExpenses();
+        this.getAddIncome();
+        this.getBudget();
+        this.periodSelect();
+        this.showResult();
         start.style.display = 'none';
         cancel.style.display ='block';
         
@@ -109,8 +109,8 @@ let appData = {
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
         IncomePeriodValue.value = this.calcPeriod();
         periodSelect.addEventListener('change', function(){
-        IncomePeriodValue.value = appData.calcPeriod();
-        }.bind());
+        IncomePeriodValue.value = this.calcPeriod();
+        }.this);
        
     },
     addExpensesBlock: function(){
@@ -139,10 +139,10 @@ let appData = {
             let itemIncome = item.querySelector('.income-title').value;
             let cashIncome = item.querySelector('.income-amount').value;
         if(itemIncome !== '' && cashIncome !== ''){
-            appData.income[itemIncome] = +cashIncome;
+            this.income[itemIncome] = +cashIncome;
         }
-        });
-        for (let key in appData.income){
+        }, this);
+        for (let key in this.income){
             this.incomeMonth += this.income[key];
         }
     },
@@ -152,19 +152,18 @@ let appData = {
         addExpenses.forEach(function(item){
             item = item.trim();
             if (item !== ''){
-                appData.addExpenses.push(item);
+                this.addExpenses.push(item);
             }
-        });
+        }, this);
 
     },
     getAddIncome: function(){
         additionalIncomeItem.forEach(function(item){
         let itemValue = item.value.trim();
         if (itemValue !== ''){
-            appData.addIncome.push(itemValue);
+            this.addIncome.push(itemValue);
         }
-        });
-
+        }, this);
 
     },
     getExpenses: function(){
@@ -172,9 +171,9 @@ let appData = {
             let itemExpenses = item.querySelector('.expenses-title').value;
             let cashExpenses = item.querySelector('.expenses-amount').value;
         if(itemExpenses !== '' && cashExpenses !== ''){
-            appData.expenses[itemExpenses] = +cashExpenses;
+            this.expenses[itemExpenses] = +cashExpenses;
         }
-        });
+        }, this);
 
     },
 
