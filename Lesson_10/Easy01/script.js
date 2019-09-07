@@ -26,7 +26,7 @@ let DomElement = function(selector, height=80, width=80, bg='green', fontSize='2
             document.body.appendChild(p);
 
         }
-    }
+    };
 };
     
 let DomElement1 = new DomElement('.','50px', '50px', 'green', '16px');

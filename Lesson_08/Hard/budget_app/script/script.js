@@ -93,6 +93,29 @@ let appData = {
             }
         });
         
+        let inputPlaceName = document.querySelectorAll('input[placeholder="Наименование"]');
+        inputPlaceName.forEach(function (item) {
+            item.addEventListener('input', function () {
+                let placeName = item.value,
+                rep = /^[a-z0-9]+$/i;
+                if (rep.test(placeName)) {
+                    placeName = placeName.replace(rep, '');
+                    item.value = placeName;
+                }
+            });
+        });
+        let inputSum = document.querySelectorAll('input[placeholder="Сумма"]');
+        inputSum.forEach(function (item) {
+            item.addEventListener('input', function () {
+                let placeSum = item.value,
+                rep = /[-.;":'a-zA-Zа-яА-Я]/;
+                if (rep.test(placeSum)) {
+                    placeSum = placeSum.replace(rep, '');
+                    item.value = placeSum;
+                }
+            
+            });
+        });
     },
 
     showResult: function(){
@@ -105,7 +128,7 @@ let appData = {
         IncomePeriodValue.value = appData.calcPeriod();
         periodSelect.addEventListener('change', function(){
             IncomePeriodValue.value = appData.calcPeriod();
-        })
+        });
     },
     addExpensesBlock: function(){
         let cloneExpensesItems = expensesItems[0].cloneNode(true);
