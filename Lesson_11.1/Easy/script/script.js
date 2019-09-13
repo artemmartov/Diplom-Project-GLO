@@ -306,35 +306,3 @@ appData.eventsListeners();
 
 
 
-//     appData.deposit = confirm('Есть ли у вас депозит в банке?');
-// for (let i = 0; i < 2; i++){
-//     let oblExpenses1 = prompt('Введите обязательную статью расходов');
-//     while (!isNaN(oblExpenses1) || oblExpenses1 === null){
-//         oblExpenses1 = prompt('Введите обязательную статью расходов');
-//     }
-//     let costExpenses1 = prompt('Во сколько это обойдется?', 2500);
-//     while (isNaN(costExpenses1) || costExpenses1 === '' || costExpenses1 === null){
-//         let costExpenses1 = prompt('Во сколько это обойдется?', 2500);
-//     }
-//  appData.expenses[oblExpenses1] = +costExpenses1;   
-// }
-// },
-
-// function(){
-//     if(confirm('Есть ли у вас дополнительный источник заработка?')){
-//         let itemIncome = prompt('Какой у вас есть дополнительный заработок?', 'Таксую');
-//         while (!isNaN(itemIncome) || itemIncome === null){
-//             itemIncome = prompt('Какой у вас есть дополнительный заработок?', 'Таксую');
-//         }
-//         let cashIncome = prompt('Сколько в месяц зарабатываете на этом?', 10000);
-//         while (isNaN(cashIncome) || cashIncome === '' || cashIncome === null){
-//             cashIncome = prompt('Сколько в месяц зарабатываете на этом?', 10000);
-//         }
-//         appData.income[itemIncome] = cashIncome;
-//     }
-
-//     for (let key in appData.income){
-//         appData.incomeMonth += +appData.income[key];
-//     }
-
-// },
