@@ -27,19 +27,19 @@ window.addEventListener('DOMContentLoaded', () => {
         };
 
         const updateClock = () => {
-            let timer = getTimeRemaining();
-        
-            timerHours.textContent = plusZero(timer.hours);
-            timerMinutes.textContent = plusZero(timer.minutes);
-            timerSeconds.textContent = plusZero(timer.seconds);
+                let timer = getTimeRemaining();
             
-            if(timer.timeRemaining <= 0){
-                timerHours.textContent = '00';
-                timerMinutes.textContent = '00';
-                timerSeconds.textContent = '00';
-                clearInterval(updateClock);
-            }
-        };
+                timerHours.textContent = plusZero(timer.hours);
+                timerMinutes.textContent = plusZero(timer.minutes);
+                timerSeconds.textContent = plusZero(timer.seconds);
+                
+                if(timer.timeRemaining <= 0){
+                    timerHours.textContent = '00';
+                    timerMinutes.textContent = '00';
+                    timerSeconds.textContent = '00';
+                    clearInterval(updateClock);
+                }
+            };
 
         setInterval(updateClock, 1000, '14 september 2019');
         updateClock();
@@ -86,14 +86,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 const popUpAnimation = () => {
                     animPop = requestAnimationFrame(popUpAnimation);
                     count++;
-                    if (count < 500){
-                        popUpContent.style.left = count + 'px';
+                    if (count < 150){
+                        popUpContent.style.left = count*5 + 'px';
                     }else {
                         cancelAnimationFrame(animPop);
                     }
                 };
                 animPop = requestAnimationFrame(popUpAnimation);
                 }
+
                 popup.style.display = 'block';
 
             });
@@ -106,6 +107,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         popUpClose.addEventListener('click', () => {
             popup.style.display = 'none';
+            
         });
 
 
@@ -116,3 +118,17 @@ window.addEventListener('DOMContentLoaded', () => {
 });
     
 
+// const updateClock = () => {
+//     let timer = getTimeRemaining();
+
+//     timerHours.textContent = plusZero(timer.hours);
+//     timerMinutes.textContent = plusZero(timer.minutes);
+//     timerSeconds.textContent = plusZero(timer.seconds);
+    
+//     if(timer.timeRemaining <= 0){
+//         timerHours.textContent = '00';
+//         timerMinutes.textContent = '00';
+//         timerSeconds.textContent = '00';
+//         clearInterval(updateClock);
+//     }
+// };
