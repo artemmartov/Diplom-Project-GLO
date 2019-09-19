@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if(btnMenu){
                 handlerMenu();
-            } else if (target !== menu && menu.style.transform && menu.style.transform === `translate(0)`){
+            } else if (target !== menu && menu.classList.contains('active-menu')){
                 handlerMenu();
             }
         });

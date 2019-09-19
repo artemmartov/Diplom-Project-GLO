@@ -59,15 +59,15 @@ window.addEventListener('DOMContentLoaded', () => {
             let target = event.target;
             let btnMenu = target.closest('.menu');
 
+            
+
             if(btnMenu){
                 handlerMenu();
-            } else if (target !== menu && menu.style.transform && menu.style.transform === `translate(0)`){
+            } else if (target !== menu && menu.classList.contains('active-menu')){
                 handlerMenu();
+                
             }
         });
-        
-        
-
     };
 
     toggleMenu();
@@ -192,7 +192,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         const autoPlaySlide = () => {
-            console.log(dot);
             prevSlide(slide, currentSlide, 'portfolio-item-active');
             prevSlide(dot, currentSlide, 'dot-active');
             currentSlide++;
@@ -284,11 +283,3 @@ window.addEventListener('DOMContentLoaded', () => {
     
 
 
-// for(let i = 0; i < slide.length; i++) {
-//     let dot = document.createElement('li');
-//     dot.classList.add('dot');
-//     if (currentSlide === i) {
-//             dot.classList.add('dot-active');
-// }
-//     dots.appendChild(dot);
-// }
