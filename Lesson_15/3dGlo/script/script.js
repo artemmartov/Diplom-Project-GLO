@@ -59,17 +59,18 @@ window.addEventListener('DOMContentLoaded', () => {
             let target = event.target;
             let btnMenu = target.closest('.menu');
 
+            
+
             if(btnMenu){
                 handlerMenu();
             } else if (target !== menu && menu.classList.contains('active-menu')){
                 handlerMenu();
+                
             }
         });
-
     };
 
     toggleMenu();
-    
 
     // popup
 
@@ -153,6 +154,168 @@ window.addEventListener('DOMContentLoaded', () => {
 
     };
     tabs();
+
+    // слайдер
+
+    const slider = () => {
+        const slide = document.querySelectorAll('.portfolio-item'),
+            btn = document.querySelectorAll('.portfolio-btn'),
+            slider = document.querySelector('.portfolio-content'),
+            portfolioDots = document.querySelector('.portfolio-dots');
+
+        let currentSlide = 0,
+            interval;
+        
+
+        const addDots = () => {
+            for(let i = 0; i <= slide.length - 1; i++) {
+                let dots = document.createElement('li');
+                dots.classList.add('dot');
+                if (i === 0) {
+                        dots.classList.add('dot-active');
+            }
+                portfolioDots.appendChild(dots);
+            }
+            
+        };
+        addDots();
+        const dot = document.querySelectorAll('.dot');
+
+        const prevSlide = (elem, index, strClass) => {
+            elem[index].classList.remove(strClass);
+            
+        };
+
+        const nextSlide = (elem, index, strClass) => {
+            elem[index].classList.add(strClass);
+        };
+
+
+        const autoPlaySlide = () => {
+            prevSlide(slide, currentSlide, 'portfolio-item-active');
+            prevSlide(dot, currentSlide, 'dot-active');
+            currentSlide++;
+            if (currentSlide >= slide.length){
+                currentSlide = 0;
+            }
+            nextSlide(slide, currentSlide, 'portfolio-item-active');
+            nextSlide(dot, currentSlide, 'dot-active');
+
+
+        };
+
+        const startSlide = (time=3000) => {
+            interval = setInterval(autoPlaySlide, time);
+
+        };
+
+        const stopSlide = () => {
+            clearInterval(interval);
+
+        };
+
+        slider.addEventListener('click', (event) => {
+            event.preventDefault();
+            let target = event.target;
+
+            if (!target.matches('.portfolio-btn', 'dot')){
+                return;
+            }
+            prevSlide(slide, currentSlide, 'portfolio-item-active');
+            prevSlide(dot, currentSlide, 'dot-active');
+
+
+            if (target.matches('#arrow-right')){
+                currentSlide++;
+
+            } else if (target.matches('#arrow-left')){
+                currentSlide--;
+
+            } else if (target.matches('dot')){
+                dot.forEach((elem, index) => {
+                    if (elem === target){
+                        currentSlide = index;
+                    }
+
+                });
+            }
+            
+            if (currentSlide >= slide.length){
+                currentSlide = 0;
+            } 
+            if (currentSlide < 0){
+                currentSlide = slide.length - 1;
+            }
+            nextSlide(slide, currentSlide, 'portfolio-item-active');
+            nextSlide(dot, currentSlide, 'dot-active');
+
+
+        });
+        slider.addEventListener('mouseover', (event) =>{
+            if (event.target.matches('.portfolio-btn') || 
+            event.target.matches('.dot')){
+                stopSlide();
+            }
+
+        });
+
+        slider.addEventListener('mouseout', (event) =>{
+            if (event.target.matches('.portfolio-btn') || 
+            event.target.matches('.dot')){
+                startSlide();
+            }
+            
+
+        });
+
+        
+        
+
+
+
+        startSlide(1500);
+        
+        
+
+    };
+    slider();
+
+    // наша команда
+    const ourCommand = () => {
+        let commandPhoto = document.querySelectorAll('.command__photo');        
+
+        for (let i = 0; i < commandPhoto.length; i++){
+            let src = commandPhoto[i].getAttribute('src');
+            commandPhoto[i].addEventListener('mouseover', (event) => {
+                event.target.src = event.target.dataset.img;
+            });
+
+            commandPhoto[i].addEventListener('mouseout', (event) => {
+                event.target.src = src;
+            });
+        }
+    
+    };
+    ourCommand();
+
+
+    // калькулятор
+    
+    const calculator = () => {
+        let calcSquare = document.querySelectorAll('.calc-item');
+        console.log(calcSquare);
+        calcSquare.forEach((elem) => {
+            elem.addEventListener('input', () => {
+                elem.value = elem.value.replace(/\D/g, '');
+            });
+
+        });
+        
+
+    };
+    calculator();
+    
 });
     
+
 
