@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     'use strict';
     // таймер
     const width= document.documentElement.clientWidth;
@@ -400,7 +400,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem;';
 
-        document.addEventListener('submit', (event) => {
+        document.body.addEventListener('submit', (event) => {
             let target = event.target,
                 getForm = target.closest('form');
                 getForm.appendChild(statusMessage);
@@ -415,44 +415,40 @@ window.addEventListener('DOMContentLoaded', () => {
             input.forEach((elem) => {
                 elem.value = '';
             });
-            postData(body, () => {
-                statusMessage.textContent = successMessage;
-            }, (error) => {
-                statusMessage.textContent = errorMessage;
-                console.error(error);
+            postData(body)
+            .then(() => {
+              statusMessage.textContent = successMessage;
+              const formInputs = [...document.querySelectorAll('input')];
+              formInputs.forEach(item => {
+                if (item.value !== '') {
+                  item.value = '';
+                }
+              });
+            })
+            .catch((error) => {
+              statusMessage.textContent = errorMessage;
+              console.log(error);
             });
         });
 
         const postData = (body) => {
-
             return new Promise((resolve, reject) => {
-                const request = new XMLHttpRequest();
-                request.addEventListener('readystatechange', () => {
-                if (request.readyState !== 4){
-                    return;
+              const request = new XMLHttpRequest();
+              request.addEventListener('readystatechange', () => {
+                if (request.readyState !== 4) {
+                  return;
                 }
-                if (request.status === 200){
-                    resolve();
+                if (request.status === 200) {
+                  resolve();
                 } else {
-                    reject(request.status);
+                  reject(request.statusText);
                 }
+              });
+              request.open('POST', './server.php');
+              request.setRequestHeader('Content-Type', 'application/json');
+              request.send(JSON.stringify(body));
             });
-
-            request.open('POST', '/server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
-
-            }); 
-        };
-        postData()
-            .then(() => {
-                statusMessage.textContent = successMessage;
-            })
-            .catch((error) => {
-                statusMessage.textContent = errorMessage;
-                console.log(error);
-            });
-        
+          };      
     };
     
     sendForm();

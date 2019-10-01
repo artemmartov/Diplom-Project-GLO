@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     'use strict';
     // таймер
     const width= document.documentElement.clientWidth;
@@ -371,12 +371,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 nameInputs = target.closest('.form-name'),
                 messageInput = target.closest('.mess');
             if (phoneInputs){
-                phoneInputs.value = phoneInputs.value.replace(/[^\d+]/g, ' ');
+                phoneInputs.value = phoneInputs.value.replace(/[^\d+]/g, '');
             }
 
             let cyrilic = (x) => {
                 let input = x;
-                input.value = input.value.replace(/[^А-яЯ-яЁё\s]/g, ' ');
+                input.value = input.value.replace(/[^А-яЯ-яЁё\s]/g, '');
             };
 
             if (nameInputs) {
@@ -396,12 +396,11 @@ window.addEventListener('DOMContentLoaded', () => {
     
         const form = document.getElementById('form1'),
             input = document.querySelectorAll('input');
-            console.log(form);
             
         const statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem;';
 
-        document.addEventListener('submit', (event) => {
+        document.body.addEventListener('submit', (event) => {
             let target = event.target,
                 getForm = target.closest('form');
                 getForm.appendChild(statusMessage);
@@ -416,33 +415,40 @@ window.addEventListener('DOMContentLoaded', () => {
             input.forEach((elem) => {
                 elem.value = '';
             });
-            postData(body, () => {
-                statusMessage.textContent = successMessage;
-            }, (error) => {
-                statusMessage.textContent = errorMessage;
-                console.error(error);
+            postData(body)
+            .then(() => {
+              statusMessage.textContent = successMessage;
+              const formInputs = [...document.querySelectorAll('input')];
+              formInputs.forEach(item => {
+                if (item.value !== '') {
+                  item.value = '';
+                }
+              });
+            })
+            .catch((error) => {
+              statusMessage.textContent = errorMessage;
+              console.log(error);
             });
         });
 
-        const postData = (body, outputData, errorData) => {
-
-            const request = new XMLHttpRequest();
-            request.addEventListener('readystatechange', () => {
-                if (request.readyState !== 4){
-                    return;
+        const postData = (body) => {
+            return new Promise((resolve, reject) => {
+              const request = new XMLHttpRequest();
+              request.addEventListener('readystatechange', () => {
+                if (request.readyState !== 4) {
+                  return;
                 }
-                if (request.status === 200){
-                    outputData();
+                if (request.status === 200) {
+                  resolve();
                 } else {
-                    errorData(request.status);
-  
+                  reject(request.statusText);
                 }
+              });
+              request.open('POST', './server.php');
+              request.setRequestHeader('Content-Type', 'application/json');
+              request.send(JSON.stringify(body));
             });
-
-            request.open('POST', '/server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
-        };
+          };      
     };
     
     sendForm();
