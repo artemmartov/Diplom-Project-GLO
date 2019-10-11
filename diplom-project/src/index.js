@@ -7,9 +7,10 @@ import sendPageForm from './modules/sendPageForm';
 import sliderFirst from './modules/sliderFirst';
 import calculator from './modules/calculator';
 import sliderSecond from './modules/sliderSecond';
+import SliderCarousel from './modules/sliderCarousel';
 
 
-
+window.addEventListener('DOMContentLoaded', function(){
 
 sliderFirst();
 
@@ -23,11 +24,38 @@ openPopUp(document.querySelector('.call .callback-btn'), document.getElementById
 
 selectMenu();
 
-sendModalForm();
+sendModalForm(document.getElementById('form1'));
+sendModalForm(document.getElementById('form2'));
 
-sendPageForm();
+
+// sendPageForm(document.getElementById('form1'));
+// sendPageForm(document.getElementById('form2'));
 
 calculator();
 
+const carousel = new SliderCarousel({
+    main: '.wrapper',
+    wrap: '.services-slider',
     
-
+    slidesToShow: 4,
+    infinity: true,
+    responsive: [{
+        breakpoint: 1024,
+        slidesToShow: 3
+ 
+    },
+    {
+        breakpoint: 768,
+        slidesToShow: 2
+ 
+    },
+    {
+        breakpoint: 576,
+        slidesToShow: 1
+ 
+    }
+    ]
+});
+carousel.init();
+    
+});
