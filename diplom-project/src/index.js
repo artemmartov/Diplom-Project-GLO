@@ -6,8 +6,14 @@ import sendModalForm from './modules/sendModalForm';
 import sendPageForm from './modules/sendPageForm';
 import sliderFirst from './modules/sliderFirst';
 import calculator from './modules/calculator';
+import sliderSecond from './modules/sliderSecond';
+
+
+
 
 sliderFirst();
+
+sliderSecond();
 
 openPopUp(document.querySelector('.fixed-gift'), document.getElementById('gift'),() =>{
     document.querySelector('.fixed-gift').style.display = 'none';
