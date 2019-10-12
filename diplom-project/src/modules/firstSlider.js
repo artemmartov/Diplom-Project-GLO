@@ -1,4 +1,4 @@
-const sliderFirst = () => {
+const firstSlider = () => {
     let mainSlider = document.querySelector('.main-slider'),
         slides = mainSlider.querySelectorAll('.slide');
     
@@ -19,4 +19,4 @@ const sliderFirst = () => {
     startSlide();
 };
 
-export default sliderFirst;
+export default firstSlider;
