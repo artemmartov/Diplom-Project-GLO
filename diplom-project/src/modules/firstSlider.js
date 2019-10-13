@@ -11,6 +11,7 @@ const firstSlider = () => {
             currentSlide = 0;
         }
         slides[currentSlide].style.display = 'flex';
+        slides[currentSlide].style.opacity = '1';
     };
     
     const startSlide = () => {
