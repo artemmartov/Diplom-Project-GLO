@@ -17,7 +17,7 @@ const firstSlider = () => {
     const startSlide = () => {
         setInterval(autoPlaySlide, 5000);
     };
-    startSlide()
+    startSlide();
 };
 
 export default firstSlider;
